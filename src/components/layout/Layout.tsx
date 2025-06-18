@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Header from "../header/Header";
 
 export default function Layout() {
   return (
-    <div>
-      <header>header</header>
-      <main>
+    <div className="container mx-auto h-screen">
+      <Header />
+      <main className="h-[calc(100%-56px)]">
         <Outlet />
       </main>
     </div>
