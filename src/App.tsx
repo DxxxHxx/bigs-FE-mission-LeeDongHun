@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
 import type { JSX } from "react";
 import SignupPage from "./pages/SignupPage";
+import SigninPage from "./pages/SigninPage";
 
 interface RouteListProp {
   id: number;
@@ -23,6 +24,7 @@ const ROUTE_LIST: RouteListProp[] = [
   },
   { id: 2, path: "/*", element: <NotFoundPage /> },
   { id: 3, path: "/signup", element: <SignupPage /> },
+  { id: 3, path: "/signin", element: <SigninPage /> },
 ];
 export default function App() {
   return (
