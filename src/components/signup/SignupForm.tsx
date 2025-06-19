@@ -5,6 +5,7 @@ import Input from "../common/Input";
 import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
+import FormSubmitButton from "../common/FormSubmitButton";
 
 const signUpSchema = z
   .object({
@@ -67,32 +68,34 @@ export default function SignUpForm() {
       className="flex flex-col justify-around items-center h-full w-3/4 md:w-1/2"
     >
       <Input
+        id="username"
         label="이메일"
         error={errors.username}
         {...register("username")}
         type="email"
       />
       <Input
+        id="name"
         label="사용자 이름"
         error={errors.name}
         {...register("name")}
         type="text"
       />
       <Input
+        id="password"
         label="비밀번호"
         error={errors.password}
         {...register("password")}
         type="password"
       />
       <Input
+        id="confirmPassword"
         label="비밀번호 확인"
         error={errors.confirmPassword}
         {...register("confirmPassword")}
         type="password"
       />
-      <button className="cursor-pointer w-full rounded-2xl p-2 bg-blue-500 hover:bg-blue-500/80 text-white transition-all duration-200">
-        회원가입
-      </button>
+      <FormSubmitButton>회원가입</FormSubmitButton>
     </form>
   );
 }
