@@ -1,10 +1,8 @@
 import axios from "axios";
 import { getAccessToken } from "./getToken";
 
-const serverURl = import.meta.env.VITE_SERVER_URL;
-
 const client = axios.create({
-  baseURL: serverURl,
+  baseURL: "/api",
 });
 
 client.interceptors.request.use(
