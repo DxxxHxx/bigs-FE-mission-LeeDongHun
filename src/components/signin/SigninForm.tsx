@@ -8,6 +8,7 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../constants/constants";
 import { Link, Navigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
+import FormContainer from "../common/FormContainer";
 
 const signinSchema = z.object({
   username: z
@@ -38,11 +39,10 @@ export default function SigninForm() {
     return <Navigate to="/" />;
   }
   return (
-    <form
+    <FormContainer
       onSubmit={handleSubmit((data) => {
         signin(data);
       })}
-      className="flex flex-col relative justify-center items-center gap-y-10 h-full w-3/4 md:w-1/2"
     >
       <Input
         label="이메일"
@@ -67,7 +67,7 @@ export default function SigninForm() {
       >
         회원가입
       </Link>
-    </form>
+    </FormContainer>
   );
 }
 

@@ -6,6 +6,7 @@ import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import FormSubmitButton from "../common/FormSubmitButton";
+import FormContainer from "../common/FormContainer";
 
 const signUpSchema = z
   .object({
@@ -59,13 +60,12 @@ export default function SignUpForm() {
     }
   };
   return (
-    <form
+    <FormContainer
       onKeyDown={(e) => {
         if (e.key !== "Enter") return;
         e.preventDefault();
       }}
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-around items-center h-full w-3/4 md:w-1/2"
     >
       <Input
         id="username"
@@ -96,6 +96,6 @@ export default function SignUpForm() {
         type="password"
       />
       <FormSubmitButton>회원가입</FormSubmitButton>
-    </form>
+    </FormContainer>
   );
 }
