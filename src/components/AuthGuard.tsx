@@ -1,11 +1,11 @@
 import React from "react";
-import { getAccessToken } from "../utils/getToken";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
-  const token = getAccessToken();
+  const user = useAuth();
 
-  if (!token) {
+  if (!user) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center px-4">
         <h1 className="text-6xl font-bold text-gray-800 mb-4">

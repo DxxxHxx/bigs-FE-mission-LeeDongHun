@@ -4,6 +4,9 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../constants/constants";
 
 const client = axios.create({
   baseURL: "/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 client.interceptors.request.use(
