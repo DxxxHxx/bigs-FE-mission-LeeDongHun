@@ -2,7 +2,9 @@ import client from "../utils/client";
 
 const boardService = {
   createPost: async (formData: FormData) => {
-    return await client.post("/boards", formData);
+    return await client.post("/boards", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
   },
   updatePost: async (id: number, formData: FormData) =>
     await client.patch(`/boards/${id}`, formData),

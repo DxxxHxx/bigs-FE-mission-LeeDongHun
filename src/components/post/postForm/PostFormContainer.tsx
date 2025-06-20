@@ -23,7 +23,11 @@ export default function PostFormContainer() {
       category: categoryRef.current.value as PostPayload["category"],
     };
 
-    formData.append("request", JSON.stringify(postPayload));
+    const postPayloadBlob = new Blob([JSON.stringify(postPayload)], {
+      type: "application/json",
+    });
+
+    formData.append("request", postPayloadBlob);
     if (file) {
       formData.append("file", file, file.name);
     }
