@@ -16,5 +16,9 @@ export default function useFilePreview() {
     }
   };
 
-  return { file, preview, handleFileChange };
+  const handleInitPreview = (url: string) => {
+    setPreview(url);
+  };
+
+  return { file, preview, handleFileChange, handleInitPreview };
 }

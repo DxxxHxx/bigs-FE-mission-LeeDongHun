@@ -7,7 +7,9 @@ const boardService = {
     });
   },
   updatePost: async (id: number, formData: FormData) =>
-    await client.patch(`/boards/${id}`, formData),
+    await client.patch(`/boards/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
   deletePost: async (id: number) => await client.delete(`/boards/${id}`),
   getPostDetail: async (id: string) => (await client.get(`/boards/${id}`)).data,
   getPosts: async (page = 0, size = 10) =>

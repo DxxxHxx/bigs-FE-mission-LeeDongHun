@@ -7,8 +7,10 @@ import boardService from "../service/boardService";
 export default function usePostDetail() {
   const { id } = useParams();
 
-  return useQuery<PostDetail>({
+  const res = useQuery<PostDetail>({
     queryKey: QUERY_KEYS.getPostDetail(id!),
     queryFn: async () => await boardService.getPostDetail(id!),
   });
+
+  return { ...res, postId: id };
 }

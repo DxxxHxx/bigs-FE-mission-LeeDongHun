@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import SigninPage from "./pages/SigninPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import PostDetailPage from "./pages/PostDetailPage";
+import UpdatePostPage from "./pages/UpdatePostPage";
 
 interface RouteListProp {
   id: number;
@@ -38,6 +39,7 @@ export default function App() {
           ))}
           <Route path="/posts/new" element={<CreatePostPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />
+          <Route path="/posts/update/:id" element={<UpdatePostPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
