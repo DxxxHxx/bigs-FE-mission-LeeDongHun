@@ -26,3 +26,51 @@ export interface PostFormPresenterProps {
   preview: string | undefined;
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
+
+export interface PostListPageable {
+  content: Content[];
+  pageable: Pageable;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+  numberOfElements: number;
+  size: number;
+  number: number;
+  sort: Sort2;
+  first: boolean;
+  empty: boolean;
+}
+
+export interface Content {
+  id: number;
+  title: string;
+  category: PostPayload["category"];
+  createdAt: string;
+}
+
+export interface Pageable {
+  pageNumber: number;
+  pageSize: number;
+  sort: Sort;
+  offset: number;
+  unpaged: boolean;
+  paged: boolean;
+}
+
+export interface Sort {
+  unsorted: boolean;
+  sorted: boolean;
+  empty: boolean;
+}
+
+export interface Sort2 {
+  unsorted: boolean;
+  sorted: boolean;
+  empty: boolean;
+}
+
+export interface PostListProps {
+  posts: PostListPageable;
+  page: number;
+  handlePagination: (action: "next" | "prev") => void;
+}
