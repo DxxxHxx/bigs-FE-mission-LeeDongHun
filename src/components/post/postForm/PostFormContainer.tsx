@@ -5,6 +5,7 @@ import boardService from "../../../service/boardService";
 import PostFormPresenter from "./PostFormPresenter";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import QUERY_KEYS from "../../../constants/queryKeys";
 
 export default function PostFormContainer() {
   const titleRef = useRef<HTMLInputElement>(null);
@@ -39,7 +40,9 @@ export default function PostFormContainer() {
     try {
       const res = await boardService.createPost(formData);
       console.log(res);
-      queryclient.invalidateQueries({ queryKey: ["postList"] });
+      queryclient.invalidateQueries({
+        queryKey: QUERY_KEYS.invalidatePostList,
+      });
       navigate("/");
       alert("작성 완료.");
     } catch (e) {

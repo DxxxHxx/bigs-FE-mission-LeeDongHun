@@ -1,4 +1,5 @@
 import type { PostDetail } from "../../../types/interface";
+import PostManageButtons from "./PostManageButtons";
 
 export default function PostDetail({
   boardCategory,
@@ -6,10 +7,11 @@ export default function PostDetail({
   createdAt,
   imageUrl,
   title,
+  id,
 }: PostDetail) {
   return (
     <div className="py-10 w-3/4 m-auto flex flex-col gap-y-10">
-      <PostManageButtons />
+      <PostManageButtons id={id} />
       <div className="flex flex-col md:flex-row gap-y-10 md:gap-y-0 md:justify-between md:items-center">
         <h1 className="text-3xl">제목 : {title}</h1>
         <p>{new Date(createdAt).toLocaleString()}</p>
@@ -30,16 +32,3 @@ export default function PostDetail({
     </div>
   );
 }
-
-const PostManageButtons = () => {
-  return (
-    <div className="flex ml-auto gap-x-5">
-      <button className="cursor-pointer rounded-3xl px-4 py-1 text-white text-sm md:text-base  transition-all duration-200 bg-blue-500 hover:bg-blue-500/80">
-        수정
-      </button>
-      <button className="cursor-pointer rounded-3xl px-4 py-1 text-white text-sm md:text-base  transition-all duration-200 bg-blue-500 hover:bg-blue-500/80">
-        삭제
-      </button>
-    </div>
-  );
-};
