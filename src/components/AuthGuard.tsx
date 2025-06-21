@@ -37,6 +37,6 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       </div>
     );
   } else {
-    return <div>{children}</div>;
+    return <div className="h-full">{children}</div>;
   }
 }
