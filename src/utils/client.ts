@@ -31,7 +31,7 @@ client.interceptors.response.use(
       [ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY].forEach((token) =>
         localStorage.removeItem(token)
       );
-      location.pathname = "/signin";
+      location.href = "/signin";
     }
   }
 );

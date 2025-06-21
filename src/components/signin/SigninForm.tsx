@@ -92,7 +92,7 @@ const useSignin = () => {
       localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
       localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 
-      location.pathname = "/";
+      location.href = "/";
     },
     onError: () => alert("다시 확인"),
   });

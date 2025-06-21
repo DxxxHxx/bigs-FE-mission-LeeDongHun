@@ -19,7 +19,7 @@ export default function Header() {
               [ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY].forEach((token) =>
                 localStorage.removeItem(token)
               );
-              location.pathname = "/";
+              location.href = "/";
             }}
             className="cursor-pointer"
           >
