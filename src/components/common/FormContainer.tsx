@@ -9,7 +9,7 @@ export default function FormContainer({
 }: FormContainerProps) {
   return (
     <form
-      className="flex flex-col relative justify-center items-center gap-y-10 h-full w-3/4 md:w-1/2"
+      className="flex flex-col relative justify-center items-center gap-y-5 h-full w-3/4 md:w-1/2"
       {...formProps}
     >
       {children}

@@ -67,6 +67,7 @@ export default function SignUpForm() {
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
+      <h1 className="text-3xl">회원 가입</h1>
       <Input
         id="username"
         label="이메일"

@@ -46,6 +46,7 @@ export default function SigninForm() {
         signin(data);
       })}
     >
+      <h1 className="text-3xl">로그인</h1>
       <Input
         defaultValue={"code123@gmail.com"}
         label="이메일"
@@ -71,15 +72,15 @@ export default function SigninForm() {
           {visible ? <EyeOff /> : <Eye />}
         </button>
       </div>
-      <FormSubmitButton disabled={isPending}>
-        {isPending ? "로그인 중..." : "로그인"}
-      </FormSubmitButton>
-      <Link
-        className="relative -top-7 text-gray-400 text-sm md:text-base"
-        to={"/signup"}
-      >
-        회원가입
-      </Link>
+
+      <div className="flex flex-col items-center justify-center w-full gap-y-3">
+        <FormSubmitButton disabled={isPending}>
+          {isPending ? "로그인 중..." : "로그인"}
+        </FormSubmitButton>
+        <Link className="text-gray-400 text-sm md:text-base" to={"/signup"}>
+          회원가입
+        </Link>
+      </div>
     </FormContainer>
   );
 }
