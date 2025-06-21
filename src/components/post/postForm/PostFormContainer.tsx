@@ -3,12 +3,16 @@ import useFilePreview from "../../../hooks/useFilePreview";
 import type { PostPayload } from "../../../types/interface";
 import boardService from "../../../service/boardService";
 import PostFormPresenter from "./PostFormPresenter";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function PostFormContainer() {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const categoryRef = useRef<HTMLSelectElement>(null);
   const { file, handleFileChange, preview } = useFilePreview();
+  const navigate = useNavigate();
+  const queryclient = useQueryClient();
 
   // 글 쓰기 요청
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -35,6 +39,9 @@ export default function PostFormContainer() {
     try {
       const res = await boardService.createPost(formData);
       console.log(res);
+      queryclient.invalidateQueries({ queryKey: ["postList"] });
+      navigate("/");
+      alert("작성 완료.");
     } catch (e) {
       console.log(e);
       alert("요청에 실패하였습니다.");
