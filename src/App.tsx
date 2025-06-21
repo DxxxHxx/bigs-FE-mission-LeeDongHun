@@ -7,6 +7,7 @@ import type { JSX } from "react";
 import SignupPage from "./pages/SignupPage";
 import SigninPage from "./pages/SigninPage";
 import CreatePostPage from "./pages/CreatePostPage";
+import PostDetailPage from "./pages/PostDetailPage";
 
 interface RouteListProp {
   id: number;
@@ -36,6 +37,7 @@ export default function App() {
             <Route key={route.id} path={route.path} element={route.element} />
           ))}
           <Route path="/posts/new" element={<CreatePostPage />} />
+          <Route path="/posts/:id" element={<PostDetailPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
