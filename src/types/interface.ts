@@ -74,3 +74,12 @@ export interface PostListProps {
   page: number;
   handlePagination: (action: "next" | "prev") => void;
 }
+
+export interface PostDetail {
+  id: number;
+  title: string;
+  content: string;
+  boardCategory: string;
+  imageUrl: string | null;
+  createdAt: string;
+}
