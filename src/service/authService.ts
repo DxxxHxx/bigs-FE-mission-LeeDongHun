@@ -1,3 +1,4 @@
+import type { SignupFormState } from "../components/signup/SignupForm";
 import { REFRESH_TOKEN_KEY } from "../constants/constants";
 import client from "../utils/client";
 
@@ -22,6 +23,8 @@ const authService = {
 
     return res;
   },
+  signup: async (payload: SignupFormState) =>
+    await client.post("/auth/signup", payload),
 };
 
 export default authService;

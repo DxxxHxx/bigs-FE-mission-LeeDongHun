@@ -2,11 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import Input from "../common/Input";
-import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import FormSubmitButton from "../common/FormSubmitButton";
 import FormContainer from "../common/FormContainer";
+import authService from "../../service/authService";
 
 const signUpSchema = z
   .object({
@@ -33,7 +33,7 @@ const signUpSchema = z
     path: ["confirmPassword"],
   });
 
-type SignupFormState = z.infer<typeof signUpSchema>;
+export type SignupFormState = z.infer<typeof signUpSchema>;
 export default function SignUpForm() {
   const {
     register,
@@ -48,7 +48,7 @@ export default function SignUpForm() {
     data: SignupFormState
   ) => {
     try {
-      await client.post("/auth/signup", data);
+      await authService.signup(data);
 
       alert("회원 가입이 완료되었습니다.");
       navigate("/");
