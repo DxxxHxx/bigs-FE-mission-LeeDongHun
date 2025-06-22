@@ -1,11 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { Link, Outlet } from "react-router-dom";
+import { getAccessToken } from "../utils/getToken";
 
-export default function AuthGuard({ children }: { children: React.ReactNode }) {
-  const user = useAuth();
+export default function AuthGuard() {
+  const token = getAccessToken();
 
-  if (!user) {
+  if (!token) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center px-4">
         <h1 className="text-6xl font-bold text-gray-800 mb-4">
@@ -37,6 +36,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       </div>
     );
   } else {
-    return <div className="h-full">{children}</div>;
+    return (
+      <div className="h-full">
+        <Outlet />
+      </div>
+    );
   }
 }
