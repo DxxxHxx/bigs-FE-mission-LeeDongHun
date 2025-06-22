@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import type { PostListProps } from "../../../types/interface";
+import { Categories, type PostListProps } from "../../../types/interface";
 import PaginationNavigator from "./PaginationNavigator";
 
 const tableHeadList = [
@@ -43,7 +43,7 @@ export default function DesktopList({
                       {post.title}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                      {post.category}
+                      {Categories[post.category]}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                       {new Date(post.createdAt).toLocaleString()}

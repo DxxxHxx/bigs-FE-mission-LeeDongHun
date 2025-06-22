@@ -1,5 +1,5 @@
 import PaginationNavigator from "./PaginationNavigator";
-import type { PostListProps } from "../../../types/interface";
+import { Categories, type PostListProps } from "../../../types/interface";
 import { Link } from "react-router-dom";
 
 export default function MobileList({
@@ -16,7 +16,9 @@ export default function MobileList({
         >
           <div className="p-4 md:p-5">
             <h3 className="text-lg font-bold text-gray-800">{post.title}</h3>
-            <p className="mt-2 text-gray-500 text-sm">{post.category}</p>
+            <p className="mt-2 text-gray-500 text-sm">
+              {Categories[post.category]}
+            </p>
             <p className="mt-2 text-gray-500 text-sm">
               {new Date(post.createdAt).toLocaleString()}
             </p>

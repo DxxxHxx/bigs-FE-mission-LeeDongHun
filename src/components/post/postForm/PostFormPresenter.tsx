@@ -1,14 +1,11 @@
 import FormContainer from "../../common/FormContainer";
 import Input from "../../common/Input";
 import FormSubmitButton from "../../common/FormSubmitButton";
-import type { PostFormPresenterProps } from "../../../types/interface";
-
-const categoryList = [
-  { id: 1, value: "NOTICE", text: "공지" },
-  { id: 2, value: "FREE", text: "자유" },
-  { id: 3, value: "QNA", text: "Q&A" },
-  { id: 4, value: "ETC", text: "기타" },
-];
+import {
+  Categories,
+  type PostFormPresenterProps,
+} from "../../../types/interface";
+import CategoryFilter from "../../common/CategoryFilter";
 
 export default function PostFormPresenter({
   refs,
@@ -25,18 +22,11 @@ export default function PostFormPresenter({
         <label htmlFor="category" className="block mb-1">
           카테고리
         </label>
-        <select
+        <CategoryFilter
           id="category"
+          defaultValue={Categories.NOTICE}
           ref={categoryRef}
-          defaultValue={"NOTICE"}
-          className="border w-full p-2 rounded"
-        >
-          {categoryList.map((category) => (
-            <option key={category.id} value={category.value}>
-              {category.text}
-            </option>
-          ))}
-        </select>
+        />
       </div>
       <div className="w-full">
         <label

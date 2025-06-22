@@ -1,4 +1,4 @@
-import type { PostDetail } from "../../../types/interface";
+import { Categories, type PostDetail } from "../../../types/interface";
 import PostManageButtons from "./PostManageButtons";
 
 export default function PostDetail({
@@ -16,7 +16,7 @@ export default function PostDetail({
         <h1 className="text-3xl">제목 : {title}</h1>
         <p>{new Date(createdAt).toLocaleString()}</p>
       </div>
-      <span>카테고리 : {boardCategory}</span>
+      <span>카테고리 : {Categories[boardCategory]}</span>
       {imageUrl && (
         <img
           className="m-auto rounded-2xl w-1/2 md:w-1/3  "

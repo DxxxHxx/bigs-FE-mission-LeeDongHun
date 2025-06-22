@@ -10,7 +10,7 @@ export interface UserInfo {
 export interface PostPayload {
   title: string;
   content: string;
-  category: "NOTICE" | "FREE" | "QNA" | "ETC";
+  category: CategoryKey;
   file?: File | null;
 }
 
@@ -25,6 +25,7 @@ export interface PostFormPresenterProps {
   handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
   preview: string | undefined;
   handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  // categories: CategoryKey
 }
 
 export interface PostListPageable {
@@ -79,7 +80,16 @@ export interface PostDetail {
   id: number;
   title: string;
   content: string;
-  boardCategory: string;
+  boardCategory: CategoryKey;
   imageUrl: string | null;
   createdAt: string;
 }
+
+export const Categories = {
+  NOTICE: "공지",
+  FREE: "자유",
+  QNA: "Q&A",
+  ETC: "기타",
+} as const;
+
+export type CategoryKey = keyof typeof Categories;
