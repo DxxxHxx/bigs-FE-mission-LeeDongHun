@@ -1,48 +1,16 @@
 import { type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-import type { PostPayload } from "../../../types/interface";
-import boardService from "../../../service/boardService";
 import PostFormPresenter from "../postForm/PostFormPresenter";
 import useInitUpdateForm from "../../../hooks/useInitUpdateForm";
+import useUpdatePost from "../../../hooks/useUpdatePost";
 
 export default function UpdatePostFormContainer() {
   const { file, handleFileChange, isLoading, postId, refs, preview } =
     useInitUpdateForm();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const { mutate: updatePost } = useUpdatePost();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { categoryRef, contentRef, titleRef } = refs;
-    if (!titleRef.current || !contentRef.current || !categoryRef.current)
-      return;
-    const formData = new FormData();
-    const postPayload: PostPayload = {
-      title: titleRef.current.value,
-      content: contentRef.current.value,
-      category: categoryRef.current.value as PostPayload["category"],
-    };
-
-    const postPayloadBlob = new Blob([JSON.stringify(postPayload)], {
-      type: "application/json",
-    });
-
-    formData.append("request", postPayloadBlob);
-    if (file) {
-      formData.append("file", file, file.name);
-    }
-
-    try {
-      const res = await boardService.updatePost(Number(postId), formData);
-      console.log(res);
-      queryClient.invalidateQueries();
-      navigate(-1);
-      alert("수정 완료.");
-    } catch (e) {
-      console.log(e);
-      alert("요청에 실패하였습니다.");
-    }
+    updatePost({ postId: Number(postId), refs, file });
   };
 
   if (isLoading) {
