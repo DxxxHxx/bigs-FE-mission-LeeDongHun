@@ -46,6 +46,7 @@
 
 ```bash
 git clone https://github.com/DxxxHxx/bigs-FE-mission-LeeDongHun.git
+cd bigs-FE-mission-LeeDongHun
 ```
 
 ### 2. 의존성 설치
