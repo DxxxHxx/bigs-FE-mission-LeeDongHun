@@ -74,6 +74,7 @@ export interface PostListProps {
   posts: PostListPageable;
   page: number;
   handlePagination: (action: "next" | "prev") => void;
+  handlePrefetch: (id: number) => void;
 }
 
 export interface PostDetail {

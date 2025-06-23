@@ -13,6 +13,13 @@ export default function Home() {
   const { data: posts, isLoading } = usePostList(+page - 1);
   const queryClient = useQueryClient();
 
+  const prefetchPost = (id: number) => {
+    queryClient.prefetchQuery({
+      queryKey: QUERY_KEYS.getPostDetail(id + ""),
+      queryFn: async () => await boardService.getPostDetail(id + ""),
+    });
+  };
+
   useEffect(() => {
     queryClient.prefetchQuery({
       queryKey: QUERY_KEYS.getCategories,
@@ -42,12 +49,14 @@ export default function Home() {
         handlePagination={handlePagination}
         page={+page}
         posts={posts!}
+        handlePrefetch={prefetchPost}
       />
 
       <MobileList
         handlePagination={handlePagination}
         page={+page}
         posts={posts!}
+        handlePrefetch={prefetchPost}
       />
     </div>
   );

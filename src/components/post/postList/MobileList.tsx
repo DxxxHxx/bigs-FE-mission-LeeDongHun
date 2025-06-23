@@ -6,11 +6,14 @@ export default function MobileList({
   posts,
   page,
   handlePagination,
+  handlePrefetch,
 }: PostListProps) {
   return (
     <div className="md:hidden space-y-4 mb-5">
       {posts.content.map((post) => (
         <div
+          onMouseEnter={() => handlePrefetch(post.id)}
+          onFocus={() => handlePrefetch(post.id)}
           key={post.id}
           className="flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl"
         >
