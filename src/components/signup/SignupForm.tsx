@@ -51,7 +51,7 @@ export default function SignUpForm() {
       await authService.signup(data);
 
       alert("회원 가입이 완료되었습니다.");
-      navigate("/");
+      navigate("/signin");
     } catch (e) {
       if (e instanceof AxiosError) {
         console.log(e);
