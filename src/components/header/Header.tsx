@@ -36,7 +36,7 @@ export default function Header() {
     }
   };
   return (
-    <header className="w-full bg-white shadow h-[56px] py-3 flex justify-between px-2 items-center">
+    <header className="w-full bg-white shadow h-[56px] py-3 flex justify-between px-2 items-center z-[999]">
       <Link to={"/"}>HOME</Link>
       {renderUser()}
     </header>

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import QUERY_KEYS from "../constants/queryKeys";
 import boardService from "../service/boardService";
+import Loader from "../components/common/Loader";
 
 export default function Home() {
   const { handlePagination, page } = usePagination();
@@ -30,11 +31,7 @@ export default function Home() {
   }, [queryClient]);
 
   if (isLoading) {
-    return (
-      <div className="h-full flex justify-center items-center">
-        <h1 className="text-3xl font-bold">Loading ...</h1>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

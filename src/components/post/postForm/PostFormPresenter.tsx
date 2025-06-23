@@ -28,7 +28,7 @@ export default function PostFormPresenter({
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <h1 className="text-3xl">{title}</h1>
+      <h1 className="text-3xl pt-10 lg:pt-0">{title}</h1>
       <Input
         ref={titleRef}
         required
