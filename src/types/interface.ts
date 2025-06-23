@@ -1,4 +1,4 @@
-import type { ChangeEvent, FormEvent, RefObject } from "react";
+import type { RefObject } from "react";
 
 export interface UserInfo {
   exp: number;
@@ -18,14 +18,6 @@ export interface PostRef {
   titleRef: RefObject<HTMLInputElement | null>;
   contentRef: RefObject<HTMLTextAreaElement | null>;
   categoryRef: RefObject<HTMLSelectElement | null>;
-}
-
-export interface PostFormPresenterProps {
-  refs: PostRef;
-  handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  preview: string | undefined;
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  // categories: CategoryKey
 }
 
 export interface PostListPageable {

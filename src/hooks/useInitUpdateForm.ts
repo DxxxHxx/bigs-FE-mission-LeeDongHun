@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import usePostDetail from "./usePostDetail";
 import useFilePreview from "./useFilePreview";
-import type { PostPayload } from "../types/interface";
 
 export default function useInitUpdateForm() {
   const { data, postId, isLoading } = usePostDetail();
@@ -13,21 +12,21 @@ export default function useInitUpdateForm() {
   const initRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (
-      !titleRef.current ||
-      !contentRef.current ||
-      !categoryRef.current ||
-      !data
-    )
-      return;
+    if (!data) return;
+    if (!titleRef.current || !contentRef.current) return;
 
-    titleRef.current.value = data?.title as string;
-    categoryRef.current.value = data?.boardCategory as PostPayload["category"];
-    contentRef.current.value = data?.content as string;
+    titleRef.current.value = data?.title;
+    contentRef.current.value = data?.content;
+
     if (data.imageUrl && !initRef.current) {
       handleInitPreview(`/api${data.imageUrl}`);
       initRef.current = true;
     }
+
+    if (!categoryRef.current) return;
+    categoryRef.current.value = data.boardCategory;
+
+    console.log("update form init");
   }, [data, handleInitPreview]);
 
   const refs = {

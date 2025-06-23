@@ -1,32 +1,61 @@
 import FormContainer from "../../common/FormContainer";
 import Input from "../../common/Input";
 import FormSubmitButton from "../../common/FormSubmitButton";
-import {
-  Categories,
-  type PostFormPresenterProps,
-} from "../../../types/interface";
-import CategoryFilter from "../../common/CategoryFilter";
+import { type CategoryKey, type PostRef } from "../../../types/interface";
+import type { ChangeEvent, FormEvent } from "react";
+export interface PostFormPresenterProps {
+  refs: PostRef;
+  handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  preview: string | undefined;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  categories: {
+    id: number;
+    value: CategoryKey;
+    text: "공지" | "자유" | "Q&A" | "기타";
+  }[];
+  title: string;
+}
 
 export default function PostFormPresenter({
   refs,
   handleFileChange,
   preview,
   handleSubmit,
+  categories,
+  title,
 }: PostFormPresenterProps) {
   const { contentRef, categoryRef, titleRef } = refs;
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <Input ref={titleRef} required label="제목" id="title" />
+      <h1 className="text-3xl">{title}</h1>
+      <Input
+        ref={titleRef}
+        required
+        label="제목"
+        id="title"
+        placeholder="제목을 입력해주세요."
+      />
       <div className="w-full">
         <label htmlFor="category" className="block mb-1">
           카테고리
         </label>
-        <CategoryFilter
+        <select
           id="category"
-          defaultValue={Categories.NOTICE}
           ref={categoryRef}
-        />
+          className="border w-full p-2 rounded"
+          defaultValue={""}
+          required
+        >
+          <option value="" disabled>
+            카테고리를 선택해주세요.
+          </option>
+          {categories.map((item) => (
+            <option key={item.id} value={item.value}>
+              {item.text}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="w-full">
         <label
@@ -53,6 +82,7 @@ export default function PostFormPresenter({
           내용
         </label>
         <textarea
+          placeholder="내용을 입력해주세요."
           required
           id="content"
           className="w-full border px-2 py-1 rounded resize-none min-h-36"
