@@ -2,11 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import Input from "../common/Input";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import FormSubmitButton from "../common/FormSubmitButton";
 import FormContainer from "../common/FormContainer";
 import authService from "../../service/authService";
+import useAuth from "../../hooks/useAuth";
 
 const signUpSchema = z
   .object({
@@ -43,6 +44,7 @@ export default function SignUpForm() {
     resolver: zodResolver(signUpSchema),
   });
   const navigate = useNavigate();
+  const user = useAuth();
 
   const onSubmit: SubmitHandler<SignupFormState> = async (
     data: SignupFormState
@@ -59,6 +61,10 @@ export default function SignUpForm() {
       }
     }
   };
+
+  if (user) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <FormContainer
       onKeyDown={(e) => {

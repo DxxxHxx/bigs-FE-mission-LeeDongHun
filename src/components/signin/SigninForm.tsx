@@ -48,7 +48,6 @@ export default function SigninForm() {
     >
       <h1 className="text-3xl">로그인</h1>
       <Input
-        defaultValue={"code123@gmail.com"}
         label="이메일"
         {...register("username")}
         type="email"
@@ -57,7 +56,6 @@ export default function SigninForm() {
       />
       <div className="relative w-full">
         <Input
-          defaultValue={"q123123123!@#"}
           label="비밀번호"
           {...register("password")}
           type={visible ? "text" : "password"}
