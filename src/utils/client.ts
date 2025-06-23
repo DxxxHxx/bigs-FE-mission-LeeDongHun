@@ -4,6 +4,9 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../constants/constants";
 
 const client = axios.create({
   baseURL: "/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 client.interceptors.request.use(
@@ -28,7 +31,7 @@ client.interceptors.response.use(
       [ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY].forEach((token) =>
         localStorage.removeItem(token)
       );
-      location.pathname = "/signin";
+      location.href = "/signin";
     }
   }
 );

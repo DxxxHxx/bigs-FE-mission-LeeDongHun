@@ -1,8 +1,7 @@
-import React from "react";
+import { Link, Outlet } from "react-router-dom";
 import { getAccessToken } from "../utils/getToken";
-import { Link } from "react-router-dom";
 
-export default function AuthGuard({ children }: { children: React.ReactNode }) {
+export default function AuthGuard() {
   const token = getAccessToken();
 
   if (!token) {
@@ -37,6 +36,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       </div>
     );
   } else {
-    return <div>{children}</div>;
+    return (
+      <div className="h-full">
+        <Outlet />
+      </div>
+    );
   }
 }

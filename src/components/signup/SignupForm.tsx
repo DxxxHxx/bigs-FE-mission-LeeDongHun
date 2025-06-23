@@ -2,10 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import Input from "../common/Input";
-import client from "../../utils/client";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import FormSubmitButton from "../common/FormSubmitButton";
+import FormContainer from "../common/FormContainer";
+import authService from "../../service/authService";
 
 const signUpSchema = z
   .object({
@@ -32,7 +33,7 @@ const signUpSchema = z
     path: ["confirmPassword"],
   });
 
-type SignupFormState = z.infer<typeof signUpSchema>;
+export type SignupFormState = z.infer<typeof signUpSchema>;
 export default function SignUpForm() {
   const {
     register,
@@ -47,10 +48,10 @@ export default function SignUpForm() {
     data: SignupFormState
   ) => {
     try {
-      await client.post("/auth/signup", data);
+      await authService.signup(data);
 
       alert("회원 가입이 완료되었습니다.");
-      navigate("/");
+      navigate("/signin");
     } catch (e) {
       if (e instanceof AxiosError) {
         console.log(e);
@@ -59,14 +60,14 @@ export default function SignUpForm() {
     }
   };
   return (
-    <form
+    <FormContainer
       onKeyDown={(e) => {
         if (e.key !== "Enter") return;
         e.preventDefault();
       }}
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-around items-center h-full w-3/4 md:w-1/2"
     >
+      <h1 className="text-3xl">회원 가입</h1>
       <Input
         id="username"
         label="이메일"
@@ -96,6 +97,6 @@ export default function SignUpForm() {
         type="password"
       />
       <FormSubmitButton>회원가입</FormSubmitButton>
-    </form>
+    </FormContainer>
   );
 }

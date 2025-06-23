@@ -3,37 +3,27 @@ import Layout from "./components/layout/Layout";
 import AuthGuard from "./components/AuthGuard";
 import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
-import type { JSX } from "react";
 import SignupPage from "./pages/SignupPage";
 import SigninPage from "./pages/SigninPage";
+import CreatePostPage from "./pages/CreatePostPage";
+import PostDetailPage from "./pages/PostDetailPage";
+import UpdatePostPage from "./pages/UpdatePostPage";
 
-interface RouteListProp {
-  id: number;
-  path: string;
-  element: JSX.Element;
-}
-const ROUTE_LIST: RouteListProp[] = [
-  {
-    id: 1,
-    path: "/",
-    element: (
-      <AuthGuard>
-        <Home />
-      </AuthGuard>
-    ),
-  },
-  { id: 2, path: "/*", element: <NotFoundPage /> },
-  { id: 3, path: "/signup", element: <SignupPage /> },
-  { id: 3, path: "/signin", element: <SigninPage /> },
-];
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          {ROUTE_LIST.map((route) => (
-            <Route key={route.id} path={route.path} element={route.element} />
-          ))}
+          <Route element={<AuthGuard />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/posts/new" element={<CreatePostPage />} />
+            <Route path="/posts/:id" element={<PostDetailPage />} />
+            <Route path="/posts/update/:id" element={<UpdatePostPage />} />
+          </Route>
+
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
