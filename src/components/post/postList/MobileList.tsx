@@ -51,7 +51,7 @@ export default function MobileList({
       <PaginationNavigator
         pageInfo={{
           currentPage: +page,
-          lastPage: Number(posts?.totalPages),
+          lastPage: Math.max(Number(posts?.totalPages), 1),
         }}
         handlePagination={handlePagination}
       />
